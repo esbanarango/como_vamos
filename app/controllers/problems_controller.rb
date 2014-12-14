@@ -3,6 +3,7 @@ class ProblemsController < ApplicationController
 
   def index
     @problems = Problem.order('updated_at DESC').page(page)
+    @problems = @problems.where(difficulty_level: params[:level]) if params[:level]
   end
 
   def show
